@@ -24,7 +24,7 @@ export default function App() {
   const { src } = useControls({
     src: {
       value: "dress.glb",
-      options: ["dress.glb", "pillow.glb"],
+      options: ["dress.glb", "pillow.glb", "pillow_uv.glb"],
       onChange() {
         setLoaded(false);
       },
