@@ -5,12 +5,12 @@ import { useControls } from "leva";
 export default function ModelEditor({ viewer }) {
   const { model } = viewer;
   for (const x of model.materials) {
-    if (x.name.startsWith("Placeholder") || x.name.startsWith("default")) {
+    if (x.name.startsWith("Placeholder")) {
       const name = x.name.replace("Placeholder.", "");
       const { [name]: image } = useControls({
         [name]: {
-          image: null
-        }
+          image: null,
+        },
       });
 
       const texture = useMemo(() => {
@@ -35,8 +35,8 @@ export default function ModelEditor({ viewer }) {
           r: v[0] * 255,
           g: v[1] * 255,
           b: v[2] * 255,
-          a: v[3]
-        }
+          a: v[3],
+        },
       });
 
       useEffect(() => {
@@ -44,7 +44,7 @@ export default function ModelEditor({ viewer }) {
           color.r / 255,
           color.g / 255,
           color.b / 255,
-          color.a
+          color.a,
         ]);
       }, [color]);
     }

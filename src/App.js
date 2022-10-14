@@ -23,17 +23,12 @@ export default function App() {
 
   const { src } = useControls({
     src: {
-      value: "airpods_case_exp1.glb",
-      options: [
-        "airpods_case_exp1.glb",
-        "frisbee_exp1.glb",
-        "feedsack_dress.glb",
-        "pillow.glb"
-      ],
+      value: "dress.glb",
+      options: ["dress.glb", "pillow.glb"],
       onChange() {
         setLoaded(false);
       },
-      transient: false
+      transient: false,
     },
 
     Export: button(async (get) => {
@@ -43,7 +38,7 @@ export default function App() {
       link.download = file.name;
       link.href = URL.createObjectURL(file);
       link.click();
-    })
+    }),
   });
 
   return (
