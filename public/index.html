@@ -27,6 +27,10 @@
       type="module"
       src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
     ></script>
+    <script>
+    self.ModelViewerElement = self.ModelViewerElement || {};
+    self.ModelViewerElement.meshoptDecoderLocation = 'https://unpkg.com/meshoptimizer/meshopt_decoder.js';
+    </script>
   </head>
 
   <body>
