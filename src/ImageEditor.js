@@ -27,8 +27,6 @@ const store = createStore({
 // make global for debug
 // window.store = store;
 
-store.openSidePanel("");
-
 store.setSize(600, 300);
 
 store.addPage();
@@ -64,12 +62,15 @@ store.activePage.addElement({
 });
 
 import { DEFAULT_SECTIONS } from "polotno/side-panel";
-console.log("default", DEFAULT_SECTIONS);
 const sections = DEFAULT_SECTIONS.filter((x) => {
   return !["templates", "size"].includes(x.name);
 });
 
 export default function ImageEditor() {
+  React.useEffect(() => {
+    store.openSidePanel("");
+  }, []);
+
   return (
     <PolotnoContainer className="polotno-app-container">
       <SidePanelWrap>
