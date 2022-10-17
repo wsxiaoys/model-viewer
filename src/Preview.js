@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Button } from "@blueprintjs/core";
 import { observer } from "mobx-react-lite";
 
-import { throttle } from "lodash-es";
+import { throttle } from "underscore";
 import Jimp from "jimp/es";
 
 const Preview = observer(({ store }) => {
@@ -14,12 +14,17 @@ const Preview = observer(({ store }) => {
     const image = await Jimp.read(imageUrl);
     image.contain(512, 512, Jimp.VERTICAL_ALIGN_TOP);
     setContent(await image.getBase64Async("image/png"));
-  }, 1000);
+  }, 300);
 
   React.useEffect(() => {
     // when loading for all fonts
     store.waitLoading().then(updateContent);
     store.on("change", updateContent);
+
+    const id = setInterval(updateContent, 1000);
+    return () => {
+      clearInterval(id);
+    };
   }, []);
 
   const modelViewerRef = React.useRef();

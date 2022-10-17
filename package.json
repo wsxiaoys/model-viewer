@@ -8,11 +8,11 @@
     "@google/model-viewer": "2.0.2",
     "jimp": "^0.16.2",
     "leva": "0.9.31",
-    "lodash-es": "^4.17.21",
     "polotno": "^1.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-scripts": "4.0.0"
+    "react-scripts": "4.0.0",
+    "underscore": "^1.13.6"
   },
   "devDependencies": {
     "@babel/runtime": "7.13.8",
