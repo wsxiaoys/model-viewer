@@ -27,40 +27,61 @@ const store = createStore({
 // make global for debug
 // window.store = store;
 
+store.openSidePanel("");
+
 store.setSize(600, 300);
 
 store.addPage();
-store.activePage.addElement({
-  type: "text",
-  text: "Polotno tips",
-  x: 50,
-  y: 100,
-  fontSize: 30,
-  width: 200,
-  align: "center",
-  fontFamily: "Amatic SC",
+
+store.openSidePanel("background");
+store.activePage.set({
+  background:
+    "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTY5OTZ8MHwxfHNlYXJjaHw4fHxwYXR0ZXJufGVufDB8fHx8MTY2NTk1ODU3Mg",
 });
 
 store.activePage.addElement({
   type: "text",
-  text: "by Anton Lavrenov",
-  x: 50,
-  y: 350,
-  fontSize: 20,
+  text: "YOUR LOGO HERE",
+  x: 350,
+  y: 120,
+  fontSize: 30,
   width: 200,
   align: "center",
-  fontFamily: "Amatic SC",
+  fontFamily: "Amiko",
+  fill: "pink",
+});
+
+store.activePage.addElement({
+  type: "text",
+  text: "YOUR LOGO HERE",
+  x: 50,
+  y: 120,
+  fontSize: 30,
+  width: 200,
+  align: "center",
+  fontFamily: "Amiko",
+  fill: "white",
+});
+
+import { DEFAULT_SECTIONS } from "polotno/side-panel";
+console.log("default", DEFAULT_SECTIONS);
+const sections = DEFAULT_SECTIONS.filter((x) => {
+  return !["templates", "size"].includes(x.name);
 });
 
 export default function ImageEditor() {
   return (
     <PolotnoContainer className="polotno-app-container">
       <SidePanelWrap>
-        <SidePanel store={store} />
+        <SidePanel
+          store={store}
+          sections={sections}
+          defaultSection="background"
+        />
       </SidePanelWrap>
       <WorkspaceWrap>
-        <Toolbar store={store} downloadButtonEnabled />
-        <Workspace store={store} />
+        <Toolbar store={store} downloadButtonEnabled={false} />
+        <Workspace store={store} components={{ PageControls: () => null }} />
         <Preview store={store} />
       </WorkspaceWrap>
     </PolotnoContainer>
